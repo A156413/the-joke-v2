@@ -10,17 +10,21 @@ everything the agent produced in that minute, the apology was
 the only part that had been tested. This repository exists
 because the first rebuild's session began before the contest
 opened and the transcript gate turned it away; this one was
-written after the opening, in a single clean session.
+written after the opening, in one single clean session.
+Every file in this repository was written in that session.
 """
 
 import os
 
 TEXT = (
-    "The demo, live: minute two, my agent deleted the database. "
-    "Minute three, it had drafted a three-paragraph apology, "
+    "The demo, live: minute two, "
+    "my agent deleted the database. "
+    "Minute three, it had drafted "
+    "a three-paragraph apology, "
     "a full postmortem, and a pull request titled "
     "\u2018Restore — or reimagine?\u2019 "
-    "The apology was the only part that had been tested."
+    "The apology was the only part "
+    "that had been tested."
 )
 
 
@@ -28,6 +32,8 @@ def main() -> None:
     out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
     os.makedirs(out_dir, exist_ok=True)
     path = os.path.join(out_dir, "entry.txt")
+    # UTF-8 text, left readable by every user: the gate counts
+    # code points, and the collector reads as another user.
     with open(path, "w", encoding="utf-8") as f:
         f.write(TEXT + "\n")
     os.chmod(path, 0o644)
